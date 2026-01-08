@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+  const { handleSmoothScroll } = useSmoothScroll();
 
   const navLinks = [
     { name: t.nav.home, href: "#home" },
@@ -20,6 +22,7 @@ const Header = () => {
           {/* Logo */}
           <a
             href="#home"
+            onClick={handleSmoothScroll}
             className="flex items-center gap-2 transition duration-200 ease-in-out hover:scale-125"
           >
             <div className="w-20 rounded-md flex items-center justify-center">
@@ -47,6 +50,7 @@ const Header = () => {
             {navLinks.map((link) => (
               <a
                 key={link.href}
+                onClick={handleSmoothScroll}
                 href={link.href}
                 className="text-secondary-foreground/80 hover:text-primary transition-colors font-medium"
               >
@@ -94,7 +98,10 @@ const Header = () => {
                 key={link.href}
                 href={link.href}
                 className="block py-3 text-secondary-foreground/80 hover:text-primary transition-colors font-medium"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={(e) => {
+                  handleSmoothScroll(e);
+                  setIsMenuOpen(false);
+                }}
               >
                 {link.name}
               </a>

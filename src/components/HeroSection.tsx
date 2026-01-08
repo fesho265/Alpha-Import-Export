@@ -54,7 +54,7 @@ const HeroSection = () => {
             <Button
               size="lg"
               variant="outline"
-              className="text-base px-8 border-secondary-foreground/30 text-secondary-foreground hover:bg-secondary-foreground/10"
+              className="text-base px-8 border-secondary-foreground/30 hover:bg-secondary-foreground/10"
             >
               {t.hero.secondary}
             </Button>
