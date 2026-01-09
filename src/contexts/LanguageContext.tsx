@@ -208,20 +208,42 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState<Language>("en");
+  // Detect language from URL pathname
+  const getLanguageFromPath = (): Language => {
+    const pathname = window.location.pathname;
+    const match = pathname.match(/^\/(en|ar)/);
+    return (match?.[1] as Language) || "en";
+  };
+
+  const [language, setLanguage] = useState<Language>(getLanguageFromPath());
 
   const isRTL = language === "ar";
+
+  // Update language when URL changes
+  useEffect(() => {
+    const urlLanguage = getLanguageFromPath();
+    setLanguage(urlLanguage);
+  }, [window.location.pathname]);
 
   useEffect(() => {
     document.documentElement.dir = isRTL ? "rtl" : "ltr";
     document.documentElement.lang = language;
   }, [language, isRTL]);
 
+  const handleSetLanguage = (lang: Language) => {
+    const pathname = window.location.pathname;
+    // Remove existing language prefix if present
+    const pathWithoutLang = pathname.replace(/^\/(en|ar)/, "");
+    const newPath = `/${lang}${pathWithoutLang || "/"}`;
+    window.history.pushState(null, "", newPath);
+    setLanguage(lang);
+  };
+
   return (
     <LanguageContext.Provider
       value={{
         language,
-        setLanguage,
+        setLanguage: handleSetLanguage,
         t: translations[language],
         isRTL,
       }}

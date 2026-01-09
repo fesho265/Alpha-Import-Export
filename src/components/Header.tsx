@@ -1,12 +1,22 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useLanguagePath } from "@/hooks/use-language-path";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+  const { getPath } = useLanguagePath();
   const { handleSmoothScroll } = useSmoothScroll();
+
+  const handleLanguageChange = (newLang: "en" | "ar") => {
+    setLanguage(newLang);
+    // Trigger a re-render by reloading the page
+    setTimeout(() => {
+      window.location.reload();
+    }, 0);
+  };
 
   const navLinks = [
     { name: t.nav.home, href: "#home" },
@@ -72,7 +82,7 @@ const Header = () => {
                 className={`font-medium transition-colors w-8 text-center ${
                   language === "en" ? "text-primary" : "hover:text-primary"
                 }`}
-                onClick={() => setLanguage("en")}
+                onClick={() => handleLanguageChange("en")}
               >
                 EN
               </button>
@@ -81,7 +91,7 @@ const Header = () => {
                 className={`font-medium transition-colors w-8 text-center ${
                   language === "ar" ? "text-primary" : "hover:text-primary"
                 }`}
-                onClick={() => setLanguage("ar")}
+                onClick={() => handleLanguageChange("ar")}
               >
                 AR
               </button>
@@ -117,7 +127,7 @@ const Header = () => {
                 className={`font-medium transition-colors ${
                   language === "en" ? "text-primary" : "hover:text-primary"
                 }`}
-                onClick={() => setLanguage("en")}
+                onClick={() => handleLanguageChange("en")}
               >
                 EN
               </button>
@@ -126,7 +136,7 @@ const Header = () => {
                 className={`font-medium transition-colors ${
                   language === "ar" ? "text-primary" : "hover:text-primary"
                 }`}
-                onClick={() => setLanguage("ar")}
+                onClick={() => handleLanguageChange("ar")}
               >
                 AR
               </button>

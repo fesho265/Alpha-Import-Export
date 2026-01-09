@@ -1,29 +1,31 @@
 import { Zap, Wind, Truck, ArrowRight, ArrowLeft } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useLanguagePath } from "@/hooks/use-language-path";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const ProductsSection = () => {
   const { t, isRTL } = useLanguage();
+  const { getPath } = useLanguagePath();
 
   const products = [
     {
       icon: Zap,
       title: t.products.electricMotors.title,
       description: t.products.electricMotors.description,
-      href: "/products/electric-motors",
+      href: getPath("/products/electric-motors"),
     },
     {
       icon: Wind,
       title: t.products.airCompressors.title,
       description: t.products.airCompressors.description,
-      href: "/products/air-compressors",
+      href: getPath("/products/air-compressors"),
     },
     {
       icon: Truck,
       title: t.products.trucks.title,
       description: t.products.trucks.description,
-      href: "/products/mercedes-trucks",
+      href: getPath("/products/mercedes-trucks"),
     },
   ];
 

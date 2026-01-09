@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { LanguageProvider, useLanguage } from "@/contexts/LanguageContext";
+import { useLanguagePath } from "@/hooks/use-language-path";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getProductBySlug } from "@/data/products";
@@ -11,6 +12,7 @@ import { useState } from "react";
 const ProductDetailContent = () => {
   const { slug } = useParams<{ slug: string }>();
   const { language, t, isRTL } = useLanguage();
+  const { getPath } = useLanguagePath();
   const [selectedImage, setSelectedImage] = useState(0);
   
   const product = getProductBySlug(slug || "");
@@ -22,7 +24,7 @@ const ProductDetailContent = () => {
           <h1 className="text-2xl font-bold text-foreground mb-4">
             {language === "en" ? "Product not found" : "المنتج غير موجود"}
           </h1>
-          <Link to="/" className="text-primary hover:underline">
+          <Link to={getPath("/")} className="text-primary hover:underline">
             {language === "en" ? "Return to home" : "العودة للرئيسية"}
           </Link>
         </div>
@@ -41,7 +43,7 @@ const ProductDetailContent = () => {
         <div className="bg-muted/30 border-b">
           <div className="container-section py-4">
             <Link 
-              to="/#products" 
+              to={getPath("/#products")} 
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
             >
               <BackArrow className="w-4 h-4" />
@@ -146,7 +148,7 @@ const ProductDetailContent = () => {
                 transition={{ duration: 0.5, delay: 0.5 }}
               >
                 <Button size="lg" className="w-full sm:w-auto gap-2" asChild>
-                  <Link to={`/#contact?product=${encodeURIComponent(content.title)}`}>
+                  <Link to={getPath(`/#contact?product=${encodeURIComponent(content.title)}`)}>
                     <Phone className="w-4 h-4" />
                     {language === "en" ? "Contact for Product" : "تواصل للمنتج"}
                   </Link>
