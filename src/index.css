@@ -144,4 +144,8 @@ html {
   .text-balance {
     text-wrap: balance;
   }
+
+  .no-layout-shift {
+    @apply whitespace-nowrap overflow-hidden text-ellipsis;
+  }
 }
