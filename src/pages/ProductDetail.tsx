@@ -1,8 +1,6 @@
 import { useParams, Link } from "react-router-dom";
-import { LanguageProvider, useLanguage } from "@/contexts/LanguageContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useLanguagePath } from "@/hooks/use-language-path";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { getProductBySlug } from "@/data/products";
 import { ArrowLeft, ArrowRight, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -14,9 +12,9 @@ const ProductDetailContent = () => {
   const { language, t, isRTL } = useLanguage();
   const { getPath } = useLanguagePath();
   const [selectedImage, setSelectedImage] = useState(0);
-  
+
   const product = getProductBySlug(slug || "");
-  
+
   if (!product) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -37,13 +35,12 @@ const ProductDetailContent = () => {
 
   return (
     <div className="min-h-screen">
-      <Header />
       <main className="pt-20">
         {/* Breadcrumb */}
         <div className="bg-muted/30 border-b">
           <div className="container-section py-4">
-            <Link 
-              to={getPath("/#products")} 
+            <Link
+              to={getPath("/products")}
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
             >
               <BackArrow className="w-4 h-4" />
@@ -69,7 +66,7 @@ const ProductDetailContent = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              
+
               {/* Thumbnail Gallery */}
               {product.images.length > 1 && (
                 <div className="flex gap-3">
@@ -78,8 +75,8 @@ const ProductDetailContent = () => {
                       key={index}
                       onClick={() => setSelectedImage(index)}
                       className={`w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
-                        selectedImage === index 
-                          ? "border-primary ring-2 ring-primary/20" 
+                        selectedImage === index
+                          ? "border-primary ring-2 ring-primary/20"
                           : "border-transparent hover:border-muted-foreground/30"
                       }`}
                     >
@@ -123,7 +120,9 @@ const ProductDetailContent = () => {
               {/* Specifications */}
               <div>
                 <h2 className="text-xl font-semibold text-foreground mb-4">
-                  {language === "en" ? "Technical Specifications" : "المواصفات الفنية"}
+                  {language === "en"
+                    ? "Technical Specifications"
+                    : "المواصفات الفنية"}
                 </h2>
                 <div className="space-y-4">
                   {content.specifications.map((spec, index) => (
@@ -134,7 +133,9 @@ const ProductDetailContent = () => {
                       transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
                       className="border-b border-border pb-3"
                     >
-                      <dt className="font-medium text-primary mb-1">{spec.label}</dt>
+                      <dt className="font-medium text-primary mb-1">
+                        {spec.label}
+                      </dt>
                       <dd className="text-muted-foreground">{spec.value}</dd>
                     </motion.div>
                   ))}
@@ -148,7 +149,11 @@ const ProductDetailContent = () => {
                 transition={{ duration: 0.5, delay: 0.5 }}
               >
                 <Button size="lg" className="w-full sm:w-auto gap-2" asChild>
-                  <Link to={getPath(`/#contact?product=${encodeURIComponent(content.title)}`)}>
+                  <Link
+                    to={getPath(
+                      `/contact?product=${encodeURIComponent(content.title)}`
+                    )}
+                  >
                     <Phone className="w-4 h-4" />
                     {language === "en" ? "Contact for Product" : "تواصل للمنتج"}
                   </Link>
@@ -158,17 +163,12 @@ const ProductDetailContent = () => {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };
 
 const ProductDetail = () => {
-  return (
-    <LanguageProvider>
-      <ProductDetailContent />
-    </LanguageProvider>
-  );
+  return <ProductDetailContent />;
 };
 
 export default ProductDetail;

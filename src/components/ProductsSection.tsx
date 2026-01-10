@@ -32,7 +32,7 @@ const ProductsSection = () => {
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
 
   return (
-    <section id="products" className="py-20 md:py-28 bg-background">
+    <section id="products" className="py-20 md:py-28 bg-gray-100">
       <div className="container-section">
         <motion.div
           initial={{ opacity: 0, y: 40 }}

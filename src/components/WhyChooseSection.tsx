@@ -25,7 +25,7 @@ const WhyChooseSection = () => {
   ];
 
   return (
-    <section className="py-20 md:py-28 section-light">
+    <section className="py-20 md:py-28 ">
       <div className="container-section">
         <motion.div
           initial={{ opacity: 0, y: 40 }}

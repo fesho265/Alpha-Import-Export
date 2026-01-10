@@ -1,28 +1,25 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Link, NavLink } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useLanguagePath } from "@/hooks/use-language-path";
-import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
   const { getPath } = useLanguagePath();
-  const { handleSmoothScroll } = useSmoothScroll();
 
   const handleLanguageChange = (newLang: "en" | "ar") => {
     setLanguage(newLang);
-    // Trigger a re-render by reloading the page
-    setTimeout(() => {
-      window.location.reload();
-    }, 0);
+    // reload to ensure components pick up new language/prefix
+    setTimeout(() => window.location.reload(), 0);
   };
 
   const navLinks = [
-    { name: t.nav.home, href: "#home" },
-    { name: t.nav.about, href: "#about" },
-    { name: t.nav.products, href: "#products" },
-    { name: t.nav.contact, href: "#contact" },
+    { name: t.nav.home, href: getPath("/home") },
+    { name: t.nav.about, href: getPath("/about") },
+    { name: t.nav.products, href: getPath("/products") },
+    { name: t.nav.contact, href: getPath("/contact") },
   ];
 
   return (
@@ -33,9 +30,8 @@ const Header = () => {
       <div className="container-section">
         <div className="flex items-center justify-between h-16 md:h-20 gap-4">
           {/* Logo - Fixed width */}
-          <a
-            href="#home"
-            onClick={handleSmoothScroll}
+          <Link
+            to={getPath("/home")}
             className="flex items-center gap-2 transition duration-200 ease-in-out hover:scale-125 flex-shrink-0"
           >
             <div className="w-20 rounded-md flex items-center justify-center">
@@ -59,19 +55,24 @@ const Header = () => {
                 </>
               )}
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation - Center, flex-1 */}
           <nav className="hidden md:flex items-center gap-8 flex-1 justify-center">
             {navLinks.map((link) => (
-              <a
+              <NavLink
                 key={link.href}
-                onClick={handleSmoothScroll}
-                href={link.href}
-                className="text-secondary-foreground/80 hover:text-primary transition-colors font-medium"
+                to={link.href}
+                className={({ isActive }) =>
+                  `text-secondary-foreground/80 font-medium transition-all border-b-2 pb-1 ${
+                    isActive
+                      ? "text-yellow-400 border-yellow-400"
+                      : "border-transparent hover:text-yellow-400 hover:border-yellow-400"
+                  }`
+                }
               >
                 {link.name}
-              </a>
+              </NavLink>
             ))}
           </nav>
 
@@ -110,17 +111,20 @@ const Header = () => {
         {isMenuOpen && (
           <nav className="md:hidden py-4 border-t border-secondary-foreground/10">
             {navLinks.map((link) => (
-              <a
+              <NavLink
                 key={link.href}
-                href={link.href}
-                className="block py-3 text-secondary-foreground/80 hover:text-primary transition-colors font-medium"
-                onClick={(e) => {
-                  handleSmoothScroll(e);
-                  setIsMenuOpen(false);
-                }}
+                to={link.href}
+                className={({ isActive }) =>
+                  `block py-3 font-medium transition-all border-l-2 pl-2 ml-2 ${
+                    isActive
+                      ? "text-yellow-400 border-yellow-400"
+                      : "text-secondary-foreground/80 border-transparent hover:text-yellow-400 hover:border-yellow-400"
+                  }`
+                }
+                onClick={() => setIsMenuOpen(false)}
               >
                 {link.name}
-              </a>
+              </NavLink>
             ))}
             <div className="flex items-center gap-2 pt-4 text-secondary-foreground/80">
               <button
