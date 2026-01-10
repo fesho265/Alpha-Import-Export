@@ -36,7 +36,7 @@ const Header = () => {
           >
             <div className="w-20 rounded-md flex items-center justify-center">
               <img
-                src="/public/Alpha_logo.png"
+                src="/Alpha_logo.png"
                 alt="Logo"
                 className="w-full h-full object-contain"
               />

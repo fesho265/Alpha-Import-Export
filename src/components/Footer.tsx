@@ -97,7 +97,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
             <div className="w-10 rounded-md flex items-center justify-center">
               <img
-                src="/public/Alpha_logo.png"
+                src="/Alpha_logo.png"
                 alt="Logo"
                 className="w-full h-full object-contain"
               />
