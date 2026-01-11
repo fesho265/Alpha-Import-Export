@@ -10,10 +10,10 @@ const About = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-secondary/20 pt-16 md:pt-20 ">
+    <div className="min-h-screen pt-16 md:pt-20 ">
       {/* Hero Section */}
       <section className="bg-[#3d3d3d] py-12 md:py-20">
-        <div className="container-section text-white">
+        <div className="container-section text-center text-white">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
