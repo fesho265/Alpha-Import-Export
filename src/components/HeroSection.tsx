@@ -2,9 +2,12 @@ import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-industrial.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
+import { Link, NavLink } from "react-router-dom";
+import { useLanguagePath } from "@/hooks/use-language-path";
 
 const HeroSection = () => {
   const { t, language } = useLanguage();
+  const { getPath } = useLanguagePath();
 
   return (
     <section
@@ -48,16 +51,21 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Button size="lg" className="text-base px-8">
-              {t.hero.cta}
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="text-base px-8 border-secondary-foreground/30 hover:bg-secondary-foreground/10"
-            >
-              {t.hero.secondary}
-            </Button>
+            <NavLink to={getPath("/products")}>
+              <Button size="lg" className="text-base px-8">
+                {t.hero.cta}
+              </Button>
+            </NavLink>
+
+            <NavLink to={getPath("/contact")}>
+              <Button
+                size="lg"
+                variant="outline"
+                className="text-base px-8 border-secondary-foreground/30 hover:bg-secondary-foreground/10"
+              >
+                {t.hero.secondary}
+              </Button>
+            </NavLink>
           </motion.div>
         </motion.div>
       </div>
