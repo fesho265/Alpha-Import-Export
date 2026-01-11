@@ -5,6 +5,7 @@ import WhyChooseSection from "@/components/WhyChooseSection";
 import CTASection from "@/components/CTASection";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import ScrollToTop from "@/components/ui/ScrollToTop";
 
 const Index = () => {
   const { hash, pathname } = useLocation();

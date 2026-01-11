@@ -16,19 +16,6 @@ const Header = () => {
     setTimeout(() => window.location.reload(), 0);
   };
 
-  const handleSmoothScroll = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
-  ) => {
-    e.preventDefault();
-    const targetId = href.replace("#", "");
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-    setIsMenuOpen(false);
-  };
-
   const navLinks = [
     { name: t.nav.home, href: getPath("/home") },
     { name: t.nav.about, href: getPath("/about") },

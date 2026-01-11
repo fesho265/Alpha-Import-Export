@@ -18,6 +18,7 @@ import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import ScrollToTopButton from "./components/ui/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const LanguageWrapper = () => (
   <LanguageProvider>
     <Header />
     <Outlet />
+    <ScrollToTopButton />
     <Footer />
   </LanguageProvider>
 );
