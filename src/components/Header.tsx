@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useLanguagePath } from "@/hooks/use-language-path";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,6 +16,19 @@ const Header = () => {
     setTimeout(() => window.location.reload(), 0);
   };
 
+  const handleSmoothScroll = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    e.preventDefault();
+    const targetId = href.replace("#", "");
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    setIsMenuOpen(false);
+  };
+
   const navLinks = [
     { name: t.nav.home, href: getPath("/home") },
     { name: t.nav.about, href: getPath("/about") },
@@ -24,11 +38,11 @@ const Header = () => {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 bg-secondary/95 backdrop-blur-sm border-b border-secondary"
+      className="fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-sm border-b border-primary"
       dir="ltr"
     >
-      <div className="container-section">
-        <div className="flex items-center justify-between h-16 md:h-20 gap-4">
+      <div className="container-section ">
+        <div className="flex items-center justify-between  h-16 md:h-20 gap-4">
           {/* Logo - Fixed width */}
           <Link
             to={getPath("/home")}
@@ -42,7 +56,7 @@ const Header = () => {
               />
             </div>
             <span
-              className="text-secondary-foreground font-bold text-lg md:text-xl hidden sm:inline"
+              className="font-bold text-lg md:text-xl hidden sm:inline"
               dir="ltr"
             >
               {language === "ar" ? (
@@ -64,7 +78,7 @@ const Header = () => {
                 key={link.href}
                 to={link.href}
                 className={({ isActive }) =>
-                  `text-secondary-foreground/80 font-medium transition-all border-b-2 pb-1 ${
+                  `font-medium transition-all border-b-2 pb-1 ${
                     isActive
                       ? "text-yellow-400 border-yellow-400"
                       : "border-transparent hover:text-yellow-400 hover:border-yellow-400"
@@ -78,7 +92,7 @@ const Header = () => {
 
           {/* Language Switcher & Mobile Menu - Fixed width */}
           <div className="flex items-center gap-4 flex-shrink-0">
-            <div className="hidden md:flex items-center gap-2 text-secondary-foreground/80">
+            <div className="hidden md:flex items-center gap-2 ">
               <button
                 className={`font-medium transition-colors w-8 text-center ${
                   language === "en" ? "text-primary" : "hover:text-primary"
@@ -99,7 +113,7 @@ const Header = () => {
             </div>
 
             <button
-              className="md:hidden text-secondary-foreground w-6"
+              className="md:hidden  w-6"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -108,7 +122,7 @@ const Header = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
+        {/* {isMenuOpen && (
           <nav className="md:hidden py-4 border-t border-secondary-foreground/10">
             {navLinks.map((link) => (
               <NavLink
@@ -118,7 +132,7 @@ const Header = () => {
                   `block py-3 font-medium transition-all border-l-2 pl-2 ml-2 ${
                     isActive
                       ? "text-yellow-400 border-yellow-400"
-                      : "text-secondary-foreground/80 border-transparent hover:text-yellow-400 hover:border-yellow-400"
+                      : " border-transparent hover:text-yellow-400 hover:border-yellow-400"
                   }`
                 }
                 onClick={() => setIsMenuOpen(false)}
@@ -126,7 +140,7 @@ const Header = () => {
                 {link.name}
               </NavLink>
             ))}
-            <div className="flex items-center gap-2 pt-4 text-secondary-foreground/80">
+            <div className="flex items-center gap-2 pt-4 ">
               <button
                 className={`font-medium transition-colors ${
                   language === "en" ? "text-primary" : "hover:text-primary"
@@ -146,7 +160,50 @@ const Header = () => {
               </button>
             </div>
           </nav>
-        )}
+        )} */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.nav
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="md:hidden overflow-hidden border-t border-secondary-foreground/10"
+            >
+              <div className="py-4">
+                {navLinks.map((link) => (
+                  <NavLink
+                    key={link.href}
+                    to={link.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block py-3 px-3 hover:text-primary transition-colors font-medium"
+                  >
+                    {link.name}
+                  </NavLink>
+                ))}
+                <div className="flex items-center gap-2 pt-4 ">
+                  <button
+                    className={`font-medium transition-colors ${
+                      language === "en" ? "text-primary" : "hover:text-primary"
+                    }`}
+                    onClick={() => setLanguage("en")}
+                  >
+                    EN
+                  </button>
+                  <span>/</span>
+                  <button
+                    className={`font-medium transition-colors ${
+                      language === "ar" ? "text-primary" : "hover:text-primary"
+                    }`}
+                    onClick={() => setLanguage("ar")}
+                  >
+                    AR
+                  </button>
+                </div>
+              </div>
+            </motion.nav>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );

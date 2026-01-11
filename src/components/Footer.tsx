@@ -93,29 +93,29 @@ const Footer = () => {
         </div>
 
         {/* Bottom Copyright */}
-        <div className="border-t border-black/20 pt-8 text-center">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
-            <div className="w-10 rounded-md flex items-center justify-center">
-              <img
-                src="/Alpha_logo.png"
-                alt="Logo"
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <span className="text-black font-semibold">
-              {language === "ar"
-                ? "ألفا للاستيراد والتصدير"
-                : "Alfa Import & Export"}
-            </span>
+      </div>
+      <div className="border-t bg-white border-black/20 py-8 text-center">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
+          <div className="w-10 rounded-md flex items-center justify-center">
+            <img
+              src="/Alpha_logo.png"
+              alt="Logo"
+              className="w-full h-full object-contain"
+            />
           </div>
-          <p className="text-black/70 text-sm">
-            © {new Date().getFullYear()}{" "}
+          <span className="text-black font-semibold">
             {language === "ar"
               ? "ألفا للاستيراد والتصدير"
               : "Alfa Import & Export"}
-            . {t.footer.rights}
-          </p>
+          </span>
         </div>
+        <p className="text-black/70 text-sm">
+          © {new Date().getFullYear()}{" "}
+          {language === "ar"
+            ? "ألفا للاستيراد والتصدير"
+            : "Alfa Import & Export"}
+          . {t.footer.rights}
+        </p>
       </div>
     </footer>
   );
