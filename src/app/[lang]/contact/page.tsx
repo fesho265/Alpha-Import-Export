@@ -1,21 +1,18 @@
-import { useState, useEffect } from "react";
-import { useSearchParams, Link } from "react-router-dom";
-import { motion } from "framer-motion";
+"use client";
+
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Clock,
-  Facebook,
-  ArrowLeft,
-  Send,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { motion } from "motion/react";
+import { contactTranslations } from "@/data/contact";
+import Link from "next/link";
+import { useToast } from "@/hooks/use-toast";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+
 import {
   Form,
   FormControl,
@@ -24,8 +21,18 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { useToast } from "@/hooks/use-toast";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Send,
+  Clock,
+  ArrowLeft,
+} from "lucide-react";
 
 const contactFormSchema = z.object({
   name: z
@@ -57,74 +64,12 @@ const contactFormSchema = z.object({
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
-const ContactContent = () => {
+export default function ContactPage() {
   const { language, isRTL } = useLanguage();
-  const [searchParams] = useSearchParams();
+  const t = contactTranslations[language as "en" | "ar"];
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const t =
-    language === "en"
-      ? {
-          pageTitle: "Contact Us",
-          pageSubtitle: "Get in touch with us",
-          formTitle: "Send Message",
-          name: "Name",
-          email: "Email",
-          phone: "Phone",
-          subject: "Subject / Product",
-          message: "Message",
-          send: "Send Message",
-          contactInfo: "Contact Information",
-          emailLabel: "Email",
-          phoneLabel: "Phone",
-          addressLabel: "Address",
-          followUs: "Follow Us",
-          businessHours: "Business Hours",
-          weekdays: "Sunday - Thursday",
-          weekdaysHours: "9:00 AM - 5:00 PM",
-          weekend: "Friday - Saturday",
-          closed: "Closed",
-          backToHome: "Back to Home",
-          successMessage:
-            "Message sent successfully! We'll get back to you soon.",
-          errorMessage: "Failed to send message. Please try again.",
-          namePlaceholder: "Your full name",
-          emailPlaceholder: "your@email.com",
-          phonePlaceholder: "+20 100 XXX XXXX",
-          subjectPlaceholder: "What's this about?",
-          messagePlaceholder: "Tell us more about your inquiry...",
-        }
-      : {
-          pageTitle: "اتصل بنا",
-          pageSubtitle: "تواصل معنا",
-          formTitle: "إرسال رسالة",
-          name: "الاسم",
-          email: "البريد الإلكتروني",
-          phone: "الهاتف",
-          subject: "الموضوع / المنتج",
-          message: "الرسالة",
-          send: "إرسال الرسالة",
-          contactInfo: "معلومات الاتصال",
-          emailLabel: "البريد الإلكتروني",
-          phoneLabel: "الهاتف",
-          addressLabel: "العنوان",
-          followUs: "تابعنا",
-          businessHours: "ساعات العمل",
-          weekdays: "الأحد - الخميس",
-          weekdaysHours: "9:00 صباحاً - 5:00 مساءً",
-          weekend: "الجمعة - السبت",
-          closed: "مغلق",
-          backToHome: "العودة للرئيسية",
-          successMessage: "تم إرسال الرسالة بنجاح! سنتواصل معك قريباً.",
-          errorMessage: "فشل إرسال الرسالة. يرجى المحاولة مرة أخرى.",
-          namePlaceholder: "اسمك الكامل",
-          emailPlaceholder: "بريدك@email.com",
-          phonePlaceholder: "+20 100 XXX XXXX",
-          subjectPlaceholder: "ما الموضوع؟",
-          messagePlaceholder: "أخبرنا المزيد عن استفسارك...",
-        };
-
+  const searchParams = useSearchParams();
   const contactInfo = {
     email: "alfaimport25@gmail.com",
     phone: "+201007751355",
@@ -186,9 +131,9 @@ const ContactContent = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-secondary">
+    <div className="min-h-screen pt-16 md:pt-20">
+      {/* Header */}
+      <section className="bg-secondary py-12 md:py-20">
         <div className="container-section">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -197,8 +142,8 @@ const ContactContent = () => {
             className="text-center"
           >
             <Link
-              to="/"
-              className="inline-flex items-center gap-2 text-secondary-foreground/70 hover:text-primary transition-colors mb-6"
+              href="/"
+              className="inline-flex items-center gap-2 text-white hover:text-primary transition-colors mb-6"
             >
               <ArrowLeft className={`w-4 h-4 ${isRTL ? "rotate-180" : ""}`} />
               {t.backToHome}
@@ -214,9 +159,9 @@ const ContactContent = () => {
       </section>
 
       {/* Contact Content */}
-      <section className="py-16 md:py-24">
-        <div className="container-section">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+      <section className="py-12 bg-gray-100">
+        <div className="container-section max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-12">
             {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: isRTL ? 30 : -30 }}
@@ -333,74 +278,74 @@ const ContactContent = () => {
 
             {/* Contact Information */}
             <motion.div
-              initial={{ opacity: 0, x: isRTL ? -30 : 30 }}
+              initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="space-y-8"
+              transition={{ duration: 0.6 }}
+              className="space-y-6"
             >
-              {/* Contact Details */}
-              <div className="bg-card border border-border rounded-xl p-8">
-                <h2 className="text-2xl font-bold text-foreground mb-6">
-                  {t.contactInfo}
-                </h2>
-
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-2xl">
+                    {language === "ar"
+                      ? "معلومات الاتصال"
+                      : "Contact Information"}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <a
+                    href={`mailto:${contactInfo.email}`}
+                    className="flex items-start gap-4 text-foreground hover:text-primary transition-colors group"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
                       <Mail className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-foreground mb-1">
-                        {t.emailLabel}
-                      </h4>
-                      <a
-                        href={`mailto:${contactInfo.email}`}
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                      >
+                      <p className="font-semibold">
+                        {language === "ar" ? "البريد الإلكتروني" : "Email"}
+                      </p>
+                      <p className="text-muted-foreground">
                         {contactInfo.email}
-                      </a>
+                      </p>
                     </div>
-                  </div>
+                  </a>
 
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <a
+                    href={`tel:${contactInfo.phone}`}
+                    className="flex items-start gap-4 text-foreground hover:text-primary transition-colors group"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
                       <Phone className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-foreground mb-1">
-                        {t.phoneLabel}
-                      </h4>
-                      <a
-                        href={`tel:${contactInfo.phone}`}
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                      >
+                      <p className="font-semibold">
+                        {language === "ar" ? "الهاتف" : "Phone"}
+                      </p>
+                      <p className="text-muted-foreground" dir="ltr">
                         {contactInfo.phone}
-                      </a>
+                      </p>
                     </div>
-                  </div>
+                  </a>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                       <MapPin className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-foreground mb-1">
-                        {t.addressLabel}
-                      </h4>
+                      <p className="font-semibold">
+                        {language === "ar" ? "العنوان" : "Address"}
+                      </p>
                       <p className="text-muted-foreground">
                         {contactInfo.address}
                       </p>
                     </div>
                   </div>
-                </div>
-              </div>
-
-              {/* Social Media */}
+                </CardContent>
+              </Card>
               <div className="bg-card border border-border rounded-xl p-8">
                 <h3 className="text-xl font-bold text-foreground mb-4">
-                  {t.followUs}
+                  {language === "ar" ? "تابعنا" : "Follow us"}
                 </h3>
-                <a
+                <Link
                   href={contactInfo.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -410,10 +355,8 @@ const ContactContent = () => {
                     <Facebook className="w-5 h-5 text-primary" />
                   </div>
                   <span className="font-medium">Facebook</span>
-                </a>
+                </Link>
               </div>
-
-              {/* Business Hours */}
               <div className="bg-card border border-border rounded-xl p-8">
                 <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
                   <Clock className="w-5 h-5 text-primary" />
@@ -440,10 +383,4 @@ const ContactContent = () => {
       </section>
     </div>
   );
-};
-
-const Contact = () => {
-  return <ContactContent />;
-};
-
-export default Contact;
+}

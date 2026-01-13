@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+'use client';
+
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useLanguagePath } from "@/hooks/use-language-path";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const CTASection = () => {
   const { t } = useLanguage();
@@ -24,7 +26,7 @@ const CTASection = () => {
           {t.cta.subtitle}
         </p>
         <Button size="lg" className="text-base px-8" asChild>
-          <Link to={getPath("/contact")}>{t.cta.button}</Link>
+          <Link href={getPath("/contact")}>{t.cta.button}</Link>
         </Button>
       </motion.div>
     </section>

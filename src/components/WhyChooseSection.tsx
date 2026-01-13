@@ -1,6 +1,8 @@
+'use client';
+
 import { Check } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const WhyChooseSection = () => {
   const { t } = useLanguage();

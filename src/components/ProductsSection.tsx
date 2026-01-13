@@ -1,8 +1,10 @@
+'use client';
+
 import { Zap, Wind, Truck, ArrowRight, ArrowLeft } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useLanguagePath } from "@/hooks/use-language-path";
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { motion } from "motion/react";
+import Link from "next/link";
 
 const ProductsSection = () => {
   const { t, isRTL } = useLanguage();
@@ -70,7 +72,7 @@ const ProductsSection = () => {
                 {product.description}
               </p>
               <Link
-                to={product.href}
+                href={product.href}
                 className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all"
               >
                 {t.products.learnMore} <ArrowIcon className="w-4 h-4" />

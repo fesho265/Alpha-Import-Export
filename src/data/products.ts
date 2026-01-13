@@ -22,7 +22,7 @@ export const products: Product[] = [
     slug: "electric-motors",
     images: [
       "https://cdn.sanity.io/images/qghx43q1/production/d605ffd433643ad7243906207e0fd2fc038bd7ff-400x292.jpg?w=800&h=600",
-      "https://cdn.sanity.io/images/qghx43q1/production/d605ffd433643ad7243906207e0fd2fc038bd7ff-400x292.jpg?w=800&h=600",
+      "/simotics-gp.webp",
     ],
     en: {
       title: "Siemens Electric Motor ",

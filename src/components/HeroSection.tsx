@@ -1,8 +1,9 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-industrial.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { motion } from "framer-motion";
-import { Link, NavLink } from "react-router-dom";
+import { motion } from "motion/react";
+import Link from "next/link";
 import { useLanguagePath } from "@/hooks/use-language-path";
 
 const HeroSection = () => {
@@ -17,7 +18,7 @@ const HeroSection = () => {
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroImage})` }}
+        style={{ backgroundImage: `url(/hero-industrial.jpg)` }}
       />
 
       {/* Overlay */}
@@ -51,13 +52,13 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <NavLink to={getPath("/products")}>
+            <Link href={getPath("/products")}>
               <Button size="lg" className="text-base px-8">
                 {t.hero.cta}
               </Button>
-            </NavLink>
+            </Link>
 
-            <NavLink to={getPath("/contact")}>
+            <Link href={getPath("/contact")}>
               <Button
                 size="lg"
                 variant="outline"
@@ -65,7 +66,7 @@ const HeroSection = () => {
               >
                 {t.hero.secondary}
               </Button>
-            </NavLink>
+            </Link>
           </motion.div>
         </motion.div>
       </div>

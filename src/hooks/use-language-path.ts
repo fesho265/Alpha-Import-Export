@@ -1,7 +1,9 @@
+'use client';
+
 import { useLanguage } from "@/contexts/LanguageContext";
 
 /**
- * Hook to generate language-prefixed paths
+ * Hook to generate language-prefixed paths for Next.js
  * Examples:
  * - getPath("/") → "/en/" or "/ar/"
  * - getPath("/products/motor") → "/en/products/motor" or "/ar/products/motor"

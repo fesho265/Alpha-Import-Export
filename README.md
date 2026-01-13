@@ -1,4 +1,4 @@
-# Welcome to Alpha Import Import & Export project
+# Welcome to Alpha Import & Export project
 
 ## Project info
 
@@ -6,11 +6,21 @@
 
 ## What technologies are used for this project?
 
+_This project is migrated from React+vite to Nextjs v16._
 This project is built with:
 
-- Vite
+- Next.js 16
 - TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-- Framer motion
+- React 19
+- shadcn
+- Tailwind CSS v3
+- Framer Motion (Motion)
+
+## Multi-language Support
+
+This app supports both English and Arabic:
+
+- English: `/en/*`
+- Arabic: `/ar/*`
+
+The root `/` automatically redirects to `/en`.

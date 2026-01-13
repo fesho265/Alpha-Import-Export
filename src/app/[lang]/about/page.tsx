@@ -1,13 +1,14 @@
+"use client";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { useLanguagePath } from "@/hooks/use-language-path";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
-const About = () => {
+export default function AboutPage() {
   const { language, t } = useLanguage();
   const { getPath } = useLanguagePath();
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <div className="min-h-screen pt-16 md:pt-20 ">
@@ -164,7 +165,7 @@ const About = () => {
               : "Explore our comprehensive range of industrial products and solutions."}
           </p>
           <Button
-            onClick={() => navigate(getPath("/products"))}
+            onClick={() => router.push(getPath("/products"))}
             size="lg"
             className="bg-primary hover:bg-primary/90 text-white"
           >
@@ -174,6 +175,4 @@ const About = () => {
       </section>
     </div>
   );
-};
-
-export default About;
+}

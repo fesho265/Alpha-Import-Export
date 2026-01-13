@@ -1,6 +1,8 @@
+"use client";
+
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useLanguagePath } from "@/hooks/use-language-path";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Mail, Phone, MapPin, Facebook } from "lucide-react";
 
 const Footer = () => {
@@ -8,7 +10,7 @@ const Footer = () => {
   const { getPath } = useLanguagePath();
 
   const navLinks = [
-    { name: t.nav.home, href: getPath("/home") },
+    { name: t.nav.home, href: getPath("/") },
     { name: t.nav.about, href: getPath("/about") },
     { name: t.nav.products, href: getPath("/products") },
     { name: t.nav.contact, href: getPath("/contact") },
@@ -64,7 +66,7 @@ const Footer = () => {
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
-                  to={link.href}
+                  href={link.href}
                   className="flex items-center text-black hover:text-yellow-700 transition-colors group"
                 >
                   <span className="inline-block w-1.5 h-1.5 bg-black rounded-full mr-3 group-hover:scale-150 transition-transform" />
