@@ -15,18 +15,21 @@ const ProductsSection = () => {
       icon: Zap,
       title: t.products.electricMotors.title,
       description: t.products.electricMotors.description,
+      linkText: t.products.electricMotors.linkText,
       href: getPath("/products/electric-motors"),
     },
     {
       icon: Wind,
       title: t.products.airCompressors.title,
       description: t.products.airCompressors.description,
+      linkText: t.products.airCompressors.linkText,
       href: getPath("/products/air-compressors"),
     },
     {
       icon: Truck,
       title: t.products.trucks.title,
       description: t.products.trucks.description,
+      linkText: t.products.trucks.linkText,
       href: getPath("/products/mercedes-trucks"),
     },
   ];
@@ -75,7 +78,7 @@ const ProductsSection = () => {
                 href={product.href}
                 className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all"
               >
-                {t.products.learnMore} <ArrowIcon className="w-4 h-4" />
+                {product.linkText} <ArrowIcon className="w-4 h-4" />
               </Link>
             </motion.div>
           ))}

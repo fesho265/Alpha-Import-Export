@@ -4,9 +4,10 @@ import AboutClient from "./AboutClient";
 export async function generateMetadata({
   params,
 }: {
-  params: { lang: "en" | "ar" };
+  params: Promise<{ lang: "en" | "ar" }>;
 }) {
-  return getPageMetadata("about", params.lang);
+  const { lang } = await params;
+  return getPageMetadata("about", lang);
 }
 
 export default function AboutPage() {

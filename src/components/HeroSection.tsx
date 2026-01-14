@@ -32,7 +32,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-4xl mx-auto"
         >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-secondary-foreground mb-6">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 drop-shadow-lg">
             {language === "ar" ? (
               <>
                 ألفا <span className="text-primary">للاستيراد والتصدير</span>
@@ -43,7 +43,7 @@ const HeroSection = () => {
               </>
             )}
           </h1>
-          <p className="text-lg md:text-xl text-secondary-foreground/80 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-white/95 mb-8 max-w-2xl mx-auto drop-shadow-md">
             {t.hero.subtitle}
           </p>
           <motion.div
@@ -62,7 +62,7 @@ const HeroSection = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="text-base px-8 border-secondary-foreground/30 hover:bg-secondary-foreground/10"
+                className="text-base px-8 bg-white/10 border-white/40 text-white hover:bg-white/20 hover:border-white/60 backdrop-blur-sm"
               >
                 {t.hero.secondary}
               </Button>
@@ -73,7 +73,7 @@ const HeroSection = () => {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-secondary-foreground/30 rounded-full flex justify-center pt-2">
+        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center pt-2">
           <div className="w-1 h-2 bg-primary rounded-full" />
         </div>
       </div>

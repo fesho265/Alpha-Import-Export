@@ -36,17 +36,21 @@ interface Translations {
     title2: string;
     subtitle: string;
     learnMore: string;
+    viewDetails: string;
     electricMotors: {
       title: string;
       description: string;
+      linkText: string;
     };
     airCompressors: {
       title: string;
       description: string;
+      linkText: string;
     };
     trucks: {
       title: string;
       description: string;
+      linkText: string;
     };
   };
   whyChoose: {
@@ -98,20 +102,24 @@ const translations: Record<Language, Translations> = {
       subtitle:
         "We offer a comprehensive range of industrial equipment designed to meet your business needs.",
       learnMore: "Learn More",
+      viewDetails: "View Details",
       electricMotors: {
         title: "Electric Motors",
         description:
           "High-performance electric motors for industrial applications, available in various power ratings and specifications.",
+        linkText: "Explore Electric Motors Range",
       },
       airCompressors: {
         title: "Air Compressors",
         description:
           "Reliable air compressors for manufacturing, construction, and industrial operations with superior efficiency.",
+        linkText: "View Air Compressor Options",
       },
       trucks: {
         title: "Mercedes Trucks",
         description:
           "Premium Mercedes-Benz commercial trucks known for durability, performance, and long-term reliability.",
+        linkText: "Discover Mercedes Truck Models",
       },
     },
     whyChoose: {
@@ -178,20 +186,24 @@ const translations: Record<Language, Translations> = {
       subtitle:
         "نقدم مجموعة شاملة من المعدات الصناعية المصممة لتلبية احتياجات عملك.",
       learnMore: "اعرف المزيد",
+      viewDetails: "عرض التفاصيل",
       electricMotors: {
         title: "المحركات الكهربائية",
         description:
           "محركات كهربائية عالية الأداء للتطبيقات الصناعية، متوفرة بتصنيفات ومواصفات طاقة مختلفة.",
+        linkText: "استكشف مجموعة المحركات الكهربائية",
       },
       airCompressors: {
         title: "ضواغط الهواء",
         description:
           "ضواغط هواء موثوقة للتصنيع والبناء والعمليات الصناعية بكفاءة فائقة.",
+        linkText: "عرض خيارات ضواغط الهواء",
       },
       trucks: {
         title: "شاحنات مرسيدس",
         description:
           "شاحنات مرسيدس-بنز التجارية الممتازة المعروفة بالمتانة والأداء والموثوقية طويلة الأمد.",
+        linkText: "اكتشف موديلات شاحنات مرسيدس",
       },
     },
     whyChoose: {

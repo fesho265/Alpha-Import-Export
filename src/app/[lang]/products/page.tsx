@@ -4,9 +4,10 @@ import ProductsClient from "./ProductsClient";
 export async function generateMetadata({
   params,
 }: {
-  params: { lang: "en" | "ar" };
+  params: Promise<{ lang: "en" | "ar" }>;
 }) {
-  return getPageMetadata("products", params.lang);
+  const { lang } = await params;
+  return getPageMetadata("products", lang);
 }
 
 export default function ProductsPage() {

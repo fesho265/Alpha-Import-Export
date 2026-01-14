@@ -25,20 +25,20 @@ export function getPageMetadata(
 
   const descriptions = {
     home: {
-      en: "We import and export air compressors, Mercedes trucks, and electric motors across Egypt and the Middle East.",
-      ar: "نستورد ونصدر ضواغط الهواء وشاحنات مرسيدس والمحركات الكهربائية عبر مصر والشرق الأوسط.",
+      en: "Alfa Import & Export - Leading supplier of industrial air compressors, Mercedes trucks, and electric motors across the Middle East. Quality equipment, competitive prices, expert support.",
+      ar: "ألفا للاستيراد والتصدير - المورد الرائد للضواغط الهوائية الصناعية، شاحنات مرسيدس والمحركات الكهربائية في الشرق الأوسط. معدات عالية الجودة، أسعار تنافسية.",
     },
     about: {
-      en: "Learn more about Alfa Import Export, our mission, and our industrial expertise.",
-      ar: "تعرف على المزيد عن ألفا للاستيراد والتصدير، مهمتنا وخبرتنا الصناعية.",
+      en: "Learn about Alfa Import & Export's commitment to providing high-quality industrial equipment with over 20 years of experience serving businesses across the Middle East region.",
+      ar: "تعرف على التزام ألفا للاستيراد والتصدير بتوفير معدات صناعية عالية الجودة مع أكثر من 20 عامًا من الخبرة في خدمة الشركات في منطقة الشرق الأوسط.",
     },
     contact: {
-      en: "Get in touch with Alfa Import Export for inquiries about industrial equipment.",
-      ar: "تواصل مع ألفا للاستيراد والتصدير للاستفسار عن المعدات الصناعية.",
+      en: "Contact Alfa Import & Export for industrial equipment inquiries. Get expert advice on air compressors, Mercedes trucks, and electric motors. Fast response, professional service.",
+      ar: "اتصل بألفا للاستيراد والتصدير للاستفسارات عن المعدات الصناعية. احصل على استشارات الخبراء حول الضواغط الهوائية وشاحنات مرسيدس والمحركات الكهربائية.",
     },
     products: {
-      en: "Explore our range of industrial air compressors, Mercedes trucks, and electric motors.",
-      ar: "استكشف مجموعتنا من ضواغط الهواء الصناعية وشاحنات مرسيدس والمحركات الكهربائية.",
+      en: "Browse our extensive range of industrial air compressors, Mercedes trucks, and electric motors. Premium quality equipment for manufacturing, construction, and industrial operations.",
+      ar: "تصفح مجموعتنا الواسعة من الضواغط الهوائية الصناعية وشاحنات مرسيدس والمحركات الكهربائية. معدات عالية الجودة للتصنيع والبناء والعمليات الصناعية.",
     },
   };
 

@@ -8,9 +8,10 @@ import CTASection from "@/components/CTASection";
 export async function generateMetadata({
   params,
 }: {
-  params: { lang: "en" | "ar" };
+  params: Promise<{ lang: "en" | "ar" }>;
 }) {
-  return getPageMetadata("home", params.lang);
+  const { lang } = await params;
+  return getPageMetadata("home", lang);
 }
 
 export default function Home() {
