@@ -1,6 +1,6 @@
 "use client";
 
-import { getPageMetadata } from "@/utils/generateMetaData";
+import { getPageMetadata } from "@/utils/generateMetadata";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { products } from "@/data/products";
 import Link from "next/link";
