@@ -20,10 +20,7 @@ export const products: Product[] = [
   {
     id: "electric-motors",
     slug: "electric-motors",
-    images: [
-      "https://cdn.sanity.io/images/qghx43q1/production/d605ffd433643ad7243906207e0fd2fc038bd7ff-400x292.jpg?w=800&h=600",
-      "/simotics-gp.webp",
-    ],
+    images: ["/motor.jpg", "/simotics-gp.webp"],
     en: {
       title: "Siemens Electric Motor ",
       summary:
@@ -85,10 +82,7 @@ export const products: Product[] = [
   {
     id: "air-compressors",
     slug: "air-compressors",
-    images: [
-      "/alphaCompressor.png",
-      "https://cdn.sanity.io/images/qghx43q1/production/e01eebb57c87596c6f635a754e5349ba7a209f63-1040x585.jpg?w=800&h=600",
-    ],
+    images: ["/alphaCompressor.png", "/aircenter3–8.jpg"],
     en: {
       title: "AIRCENTER 3 – 8",
       summary:
@@ -145,10 +139,7 @@ export const products: Product[] = [
   {
     id: "mercedes-trucks",
     slug: "mercedes-trucks",
-    images: [
-      "/alphaAtego.jpeg",
-      "https://cdn.sanity.io/images/qghx43q1/production/6c12847de3890908428ef21269d8fe0d8bbce2b3-1680x944.jpg?w=800&h=600",
-    ],
+    images: ["/alphaAtego.jpeg", "/atego.avif"],
     en: {
       title: "Mercedes-Benz Atego",
       summary:
