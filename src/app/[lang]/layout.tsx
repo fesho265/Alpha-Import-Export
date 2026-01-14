@@ -1,4 +1,3 @@
-import { LanguageProvider } from "@/contexts/LanguageContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollToTopButton from "@/components/ui/ScrollToTop";
@@ -15,14 +14,19 @@ export default function LangLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ lang: string }>;
+  // params: Promise<{ lang: string }>;
+  params: { lang: "en" | "ar" };
 }) {
   return (
-    <Providers>
-      <Header />
-      {children}
-      <ScrollToTopButton />
-      <Footer />
-    </Providers>
+    <html lang={params.lang} suppressHydrationWarning>
+      <body>
+        <Providers>
+          <Header />
+          {children}
+          <ScrollToTopButton />
+          <Footer />
+        </Providers>
+      </body>
+    </html>
   );
 }
