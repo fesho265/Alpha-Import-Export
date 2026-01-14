@@ -1,5 +1,5 @@
 "use client";
-import { getPageMetadata } from "@/utils/generateMetadata";
+
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { useLanguagePath } from "@/hooks/use-language-path";

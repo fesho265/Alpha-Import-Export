@@ -6,8 +6,8 @@ export function getPageMetadata(
 ) {
   const titles = {
     home: {
-      en: "Alfa Import Export | Industrial Air Compressors, Mercedes Trucks & Electric Motors",
-      ar: "ألفا للاستيراد والتصدير | ضواغط الهواء، شاحنات مرسيدس والمحركات الكهربائية",
+      en: "Alfa Import Export | Industrial Equipment Supplier",
+      ar: "ألفا للاستيراد والتصدير | مورد المعدات الصناعية",
     },
     about: {
       en: "About Alfa Import Export | Trusted Industrial Supplier",
@@ -25,8 +25,8 @@ export function getPageMetadata(
 
   const descriptions = {
     home: {
-      en: "Alfa Import & Export - Leading supplier of industrial air compressors, Mercedes trucks, and electric motors across the Middle East. Quality equipment, competitive prices, expert support.",
-      ar: "ألفا للاستيراد والتصدير - المورد الرائد للضواغط الهوائية الصناعية، شاحنات مرسيدس والمحركات الكهربائية في الشرق الأوسط. معدات عالية الجودة، أسعار تنافسية.",
+      en: "Trusted supplier of air compressors, Mercedes trucks, and electric motors in the Middle East. Quality equipment, competitive prices, expert support.",
+      ar: "مورد موثوق لضواغط الهواء وشاحنات مرسيدس والمحركات الكهربائية في الشرق الأوسط. معدات ذات جودة عالية، أسعار تنافسية، ودعم خبير.",
     },
     about: {
       en: "Learn about Alfa Import & Export's commitment to providing high-quality industrial equipment with over 20 years of experience serving businesses across the Middle East region.",
