@@ -14,19 +14,14 @@ export default function LangLayout({
   params,
 }: {
   children: React.ReactNode;
-  // params: Promise<{ lang: string }>;
-  params: { lang: "en" | "ar" };
+  params: Promise<{ lang: string }>;
 }) {
   return (
-    <html lang={params.lang} suppressHydrationWarning>
-      <body>
-        <Providers>
-          <Header />
-          {children}
-          <ScrollToTopButton />
-          <Footer />
-        </Providers>
-      </body>
-    </html>
+    <Providers>
+      <Header />
+      {children}
+      <ScrollToTopButton />
+      <Footer />
+    </Providers>
   );
 }
