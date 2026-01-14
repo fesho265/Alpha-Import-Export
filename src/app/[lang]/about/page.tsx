@@ -1,9 +1,18 @@
 "use client";
+import { getPageMetadata } from "@/utils/generateMetadata";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { useLanguagePath } from "@/hooks/use-language-path";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: "en" | "ar" };
+}) {
+  return getPageMetadata("about", params.lang);
+}
 
 export default function AboutPage() {
   const { language, t } = useLanguage();

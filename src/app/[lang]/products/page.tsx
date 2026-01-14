@@ -1,5 +1,6 @@
 "use client";
 
+import { getPageMetadata } from "@/utils/generateMetaData";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { products } from "@/data/products";
 import Link from "next/link";
@@ -7,6 +8,14 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "motion/react";
 import Image from "next/image";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: "en" | "ar" };
+}) {
+  return getPageMetadata("products", params.lang);
+}
 
 export default function ProductsPage() {
   const { language, t } = useLanguage();

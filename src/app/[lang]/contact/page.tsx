@@ -1,5 +1,5 @@
 "use client";
-
+import { getPageMetadata } from "@/utils/generateMetadata";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "motion/react";
@@ -8,7 +8,15 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { Mail, Phone, MapPin, Facebook, Clock, ArrowLeft } from "lucide-react";
 import ContactFormWrapper from "@/components/ui/ContactFormWrapper";
-import { getContactInfo } from "@/data/contact";
+import { getContactInfo } from "@/utils/getContactInfo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: "en" | "ar" };
+}) {
+  return getPageMetadata("contact", params.lang);
+}
 
 export default function ContactPage() {
   const { language, isRTL } = useLanguage();
