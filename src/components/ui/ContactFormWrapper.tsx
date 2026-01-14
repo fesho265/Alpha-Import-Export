@@ -20,7 +20,7 @@ import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { getContactInfo } from "@/data/contact";
+import { getContactInfo } from "@/utils/getContactInfo";
 
 const contactFormSchema = z.object({
   name: z
